@@ -18,4 +18,5 @@ RUN cmake --build build -j $(nproc) --target rpc-server
 
 EXPOSE 8000/tcp
 
-ENTRYPOINT [ "/app/build/bin/rpc-server", "-H", "127.0.0.1" ]
+ENV LLAMA_ARG_RPC_PORT=$LLAMA_ARG_RPC_PORT
+ENTRYPOINT /app/build/bin/rpc-server -H 127.0.0.1 -p $LLAMA_ARG_RPC_PORT
